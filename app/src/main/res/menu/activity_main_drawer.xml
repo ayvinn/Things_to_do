@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_inbox"
+            android:icon="@drawable/ic_menu_inbox"
+            android:title="Inbox"
+
+            />
+        <item
+            android:id="@+id/nav_today"
+            android:icon="@drawable/ic_menu_today"
+            android:title="Today" />
+        <item
+            android:id="@+id/nav_upcoming"
+            android:icon="@drawable/ic_menu_upcoming"
+            android:title="Upcoming" />
+        <item
+            android:id="@+id/nav_anytime"
+            android:icon="@drawable/ic_menu_anytime"
+            android:title="Anytime" />
+        <item
+            android:id="@+id/nav_logbook"
+            android:icon="@drawable/ic_menu_logbook"
+            android:title="Logbook" />
+    </group>
+
+    <item android:title="Other">
+        <menu>
+            <item
+                android:id="@+id/nav_setting"
+                android:icon="@drawable/ic_menu_setting"
+                android:title="Setting" />
+            <item
+                android:id="@+id/nav_help"
+                android:icon="@drawable/ic_menu_help"
+                android:title="Help &amp; feedback" />
+        </menu>
+    </item>
+
+</menu>

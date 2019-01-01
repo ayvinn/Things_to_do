@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Remind me to ..."
+
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Notes ..."
+        android:inputType="textMultiLine"
+        android:lines="4"
+        android:gravity="top"
+
+        />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/TV_pickedDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Anytime"
+            android:textSize="20dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/colorPrimary"
+            />
+
+        <ImageButton
+            android:id="@+id/b_DatePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_todo_when"/>
+
+
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>
