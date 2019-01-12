@@ -22,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,15 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
-        /*ImageButton b = (ImageButton) findViewById(R.id.b_DatePicker);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Worked !!", Toast.LENGTH_SHORT).show();
-            }
-        });*/
+        DbHelper dbHelper = new DbHelper(this);
 
 
 
@@ -60,6 +53,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View view) {
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG.setAction("Action", null).show();
 
+                //final String title;
+                String notes;
+                String date;
 
 
 
@@ -69,23 +65,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 LayoutInflater inflater = MainActivity.this.getLayoutInflater();
                 builder.setView(inflater.inflate(R.layout.dialiog_todo,null));
                 builder.setMessage("New task");
-                builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+
+
+                /*builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //perform any action
-                        Toast.makeText(getApplicationContext(), "Save clicked", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), title, Toast.LENGTH_SHORT).show();
+
+
+
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //perform any action
-                        Toast.makeText(getApplicationContext(), "Cancel clicked", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "Cancel clicked", Toast.LENGTH_SHORT).show();
+
+
                     }
-                });
+                });*/
                 //creating alert dialog
                 final AlertDialog alertDialog = builder.create();
                 alertDialog.show();
+
+                final EditText ET_title = (EditText) alertDialog.findViewById(R.id.tododialog_et_title);
+                final EditText ET_note = (EditText) alertDialog.findViewById(R.id.todo);
+
 
                 ImageButton b = (ImageButton) alertDialog.findViewById(R.id.b_DatePicker);
                 b.setOnClickListener(new View.OnClickListener() {
@@ -94,16 +101,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         //onCalendarClick_();
                         Toast.makeText(getApplicationContext(), "worked", Toast.LENGTH_SHORT).show();
 
-
-
-
                         //final TextView dateString = (TextView)findViewById(R.id.TV_pickedDate);
                         final TextView dateString = (TextView) alertDialog.findViewById(R.id.TV_pickedDate);
                         Calendar c = Calendar.getInstance();
                         DatePickerDialog datePickerDialog ;
 
                         int d = c.get(Calendar.DAY_OF_MONTH);
-                        int m = c.get(Calendar.MONTH)+1;
+                        int m = c.get(Calendar.MONTH);
                         int y = c.get(Calendar.YEAR);
 
 
@@ -111,16 +115,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         datePickerDialog = new DatePickerDialog(MainActivity.this,new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                String s = String.valueOf(dayOfMonth)+'/'+month+'/'+year;
+                                String s = String.valueOf(dayOfMonth)+'/'+(month+1)+'/'+year;
                                 dateString.setText(s);
                             }
 
                         },d,m,y);
-
+                        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
                         datePickerDialog.show();
                     }
                 });
 
+                Button b_save = (Button) alertDialog.findViewById(R.id.b_save);
+                b_save.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String title = ET_title.getText().toString();
+                        Toast.makeText(getApplicationContext(), "title: "+title, Toast.LENGTH_SHORT).show();
+                        alertDialog.dismiss();
+                    }
+                });
 
 
 
